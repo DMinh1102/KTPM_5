@@ -1,0 +1,54 @@
+{
+    "name": "electron-markdownify",
+    "version": "1.4.1",
+    "description": "A minimalist Markdown Editor",
+    "main": "main.js",
+    "productName": "Markdownify",
+    "scripts": {
+        "start": "electron main.js",
+        "build": "rm -rf dist && gulp build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/amitmerchant1990/markdownify.git",
+        "docs": "https://github.com/amitmerchant1990/electron-markdownify/blob/master/README.md"
+    },
+    "keywords": [
+        "electron",
+        "markdown",
+        "plain",
+        "node",
+        "minimal",
+        "editor",
+        "preview",
+        "html",
+        "desktop"
+    ],
+    "author": "Amit Merchant <bullredeyes@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/amitmerchant1990/markdownify/issues"
+    },
+    "homepage": "https://github.com/amitmerchant1990/markdownify#readme",
+    "_npmUser": {
+        "name": "amit_merchant",
+        "email": "bullredeyes@gmail.com"
+    },
+    "devDependencies": {
+        "devtron": "^1.1.2",
+        "electron": "^7.2.4",
+        "electron-packager": "^7.0.3",
+        "electron-reloader": "^1.0.1",
+        "gulp": "^3.9.1"
+    },
+    "dependencies": {
+        "electron-config": "^0.2.1",
+        "electron-editor-context-menu": "^1.1.1",
+        "electron-json-storage": "^4.2.0",
+        "electron-localshortcut": "^1.0.0",
+        "highlightjs": "^9.16.2",
+        "parse-filepath": "^1.0.2",
+        "parse-katex": "^0.3.0",
+        "showdown": "^1.9.1"
+    }
+}
