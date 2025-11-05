@@ -157,7 +157,7 @@ ipc.on("setTheme" , (event , theme) => {
 
   styleElem.type = "text/css"
 
-  styleElem.href = `./app/styles/themes/${theme}.css`
+  styleElem.href = `src/renderer/components/styles/themes/${theme}.css`
 
   document.body.appendChild(styleElem)
 })

@@ -9,7 +9,9 @@ const fs = require('fs')
 const os = require('os')
 const path = require('path')
 
-const mainPage = 'file://' + __dirname + '/index.html';
+global.projectRoot = path.join(__dirname, "..", "..");
+
+const mainPage = 'file://' + projectRoot + '/index.html';
 
 const tray = require('./tray');
 const appDetails = require('../../package.json');
@@ -22,11 +24,13 @@ var localShortcut = require('electron-localshortcut');
 let isQuitting = false;
 
 var createWindow = () => {
+    console.log(mainPage)
+
     // Create the browser window.
     let mainWindow = new BrowserWindow({
         width: 1400,
         height: 800,
-        icon: __dirname + 'src/renderer/components/img/markdownify.ico',
+        icon: projectRoot + 'src/renderer/components/img/markdownify.ico',
         title: appDetails.productName,
         webPreferences: {
             nodeIntegration: true
@@ -322,3 +326,4 @@ app.on('before-quit', () => {
 try {
     require('electron-reloader')(module)
 } catch (_) {}
+
