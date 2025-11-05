@@ -30,7 +30,7 @@ var createWindow = () => {
     let mainWindow = new BrowserWindow({
         width: 1400,
         height: 800,
-        icon: projectRoot + 'src/renderer/components/img/markdownify.ico',
+        icon: projectRoot + 'src/renderer/img/markdownify.ico',
         title: appDetails.productName,
         webPreferences: {
             nodeIntegration: true

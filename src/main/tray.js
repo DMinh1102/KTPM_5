@@ -9,7 +9,7 @@ exports.create = (mainWindow) => {
     return;
   }
 
-  const iconPath = path.resolve(__dirname, '../renderer/components/img/IconTray.png');
+  const iconPath = path.resolve(__dirname, '../renderer/img/IconTray.png');
 
   const toggleWin = () => {
     if (mainWindow.isVisible()) {
