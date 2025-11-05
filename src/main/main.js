@@ -12,7 +12,7 @@ const path = require('path')
 const mainPage = 'file://' + __dirname + '/index.html';
 
 const tray = require('./tray');
-const appDetails = require('./package.json');
+const appDetails = require('../../package.json');
 
 var localShortcut = require('electron-localshortcut');
 
@@ -26,7 +26,7 @@ var createWindow = () => {
     let mainWindow = new BrowserWindow({
         width: 1400,
         height: 800,
-        icon: __dirname + '/app/img/markdownify.ico',
+        icon: __dirname + 'src/renderer/components/img/markdownify.ico',
         title: appDetails.productName,
         webPreferences: {
             nodeIntegration: true

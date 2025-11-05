@@ -2,10 +2,10 @@
     "name": "electron-markdownify",
     "version": "1.4.1",
     "description": "A minimalist Markdown Editor",
-    "main": "main.js",
+    "main": "src/main/main.js",
     "productName": "Markdownify",
     "scripts": {
-        "start": "electron main.js",
+        "start": "electron src/main/main.js",
         "build": "rm -rf dist && gulp build"
     },
     "repository": {
