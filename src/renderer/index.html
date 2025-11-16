@@ -1,0 +1,45 @@
+<!-- src/renderer/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdownify</title>
+  
+  <!-- CodeMirror CSS -->
+  <link rel="stylesheet" href="../../node_modules/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="../../node_modules/codemirror/theme/monokai.css">
+  
+  <!-- Highlight.js CSS -->
+  <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Toolbar -->
+    <div id="toolbar-container"></div>
+    
+    <!-- Main Content -->
+    <div id="main-content">
+      <!-- Editor -->
+      <div id="editor-container" class="pane"></div>
+      
+      <!-- Preview -->
+      <div id="preview-container" class="pane"></div>
+    </div>
+    
+    <!-- Status Bar -->
+    <div id="status-bar">
+      <span id="cursor-position">Line 1, Col 1</span>
+      <span id="word-count">0 words</span>
+    </div>
+  </div>
+
+  <!-- Load renderer script -->
+  <script src="renderer.js"></script>
+  <script src="../../node_modules/codemirror/lib/codemirror.js"></script>
+  <script src="../../node_modules/codemirror/mode/markdown/markdown.js"></script>
+</body>
+</html>
