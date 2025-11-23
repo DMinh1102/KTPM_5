@@ -168,6 +168,7 @@ input[type="radio"] {
 }
 
 .preview-pane {
+    flex: 1;
     float: right;
 }
 
@@ -272,4 +273,27 @@ input[type="radio"]:checked:before {
 
 .cm-s-base16-dark.CodeMirror{
     padding: 10px;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.pane {
+  flex: 1; /* Left and right get equal width */
+  padding: 20px;
+}
+
+.resizable-pane {
+  resize: horizontal;
+  overflow: auto;       /* required for resize handle */
+  min-width: 100px;
+  max-width: 80vw;      /* optional */
+}
+
+.divider {
+  width: 5px;
+  background: #2c3e50;
+  cursor: col-resize;
 }
