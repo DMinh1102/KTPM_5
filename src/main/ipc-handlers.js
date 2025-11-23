@@ -1,6 +1,7 @@
 // src/main/ipc-handlers.js
 const { ipcMain, dialog } = require('electron');
-
+const Store = require('electron-store');
+const store = new Store();
 // File dialogs
 ipcMain.handle('dialog:openFile', async () => {
   return await dialog.showOpenDialog({
@@ -50,3 +51,7 @@ ipcMain.on('notification:success', (event, { message }) => {
   console.log('Success:', message);
 });
 
+ipcMain.on('electron-store-get-data', (event, arg) => {
+  // Handle the request and return data
+  event.returnValue = {}; // sendSync expects a return value
+});
