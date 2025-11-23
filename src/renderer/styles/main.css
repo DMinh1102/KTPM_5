@@ -51,18 +51,19 @@ body {
 /* Main Content */
 #main-content {
   display: flex;
-  flex: 1;
+  flex: auto;
   overflow: hidden;
 }
 
 .pane {
   flex: 1;
-  overflow: auto;
+  padding: 20px;
 }
 
 /* Editor */
 #editor-container {
-  border-right: 1px solid #ddd;
+  flex: 1;
+  border-right: 0px solid #ddd;
 }
 
 .CodeMirror {
@@ -73,6 +74,7 @@ body {
 
 /* Preview */
 #preview-container {
+  flex: 1;
   padding: 20px;
   background: #fff;
 }

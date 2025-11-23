@@ -7,6 +7,9 @@ const ToolbarView = require('../views/toolbarView.js');
 const DocumentController = require('../controllers/documentController.js');
 const EditorController = require('../controllers/editorController.js');
 const CodeMirror = require('codemirror');
+const divider = document.getElementById("divider");
+const editor = document.getElementById("editor-container");
+const preview = document.getElementById("preview-container");
 require('codemirror/mode/markdown/markdown');
 
 // Initialize application when DOM is ready
@@ -50,4 +53,32 @@ document.addEventListener('DOMContentLoaded', () => {
   documentModel.setContent('# Welcome to Markdownify\n\nStart writing your markdown here...');
   
   console.log('Application initialized with MVC pattern');
+});
+
+let dragging = false;
+
+divider.addEventListener("mousedown", () => {
+  dragging = true;
+  document.body.style.cursor = "col-resize";
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (!dragging) return;
+
+  const containerWidth = divider.parentElement.offsetWidth;
+
+  // New width for left pane
+  let newEditorWidth = e.clientX;
+  
+  // Bounds
+  if (newEditorWidth < 100) newEditorWidth = 100;
+  if (newEditorWidth > containerWidth - 100) newEditorWidth = containerWidth - 100;
+
+  editor.style.flex = "none";
+  editor.style.width = newEditorWidth + "px";
+});
+
+document.addEventListener("mouseup", () => {
+  dragging = false;
+  document.body.style.cursor = "default";
 });

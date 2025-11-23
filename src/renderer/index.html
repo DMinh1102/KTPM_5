@@ -8,6 +8,7 @@
   
   <!-- CodeMirror CSS -->
   <link rel="stylesheet" href="styles/codemirror.css">
+  <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="../../node_modules/codemirror/theme/monokai.css">
   
   <!-- Highlight.js CSS -->
@@ -22,10 +23,11 @@
     <div id="toolbar-container"></div>
     
     <!-- Main Content -->
-    <div id="main-content">
+    <div id="main-content" class="container">
       <!-- Editor -->
-      <div id="editor-container" class="pane"></div>
-      
+      <div id="editor-container" class="pane resizable-pane"></div>
+      <!-- Dividing line-->
+      <div id="divider" class="divider"></div>
       <!-- Preview -->
       <div id="preview-container" class="pane"></div>
     </div>
