@@ -282,7 +282,6 @@ input[type="radio"]:checked:before {
 
 .pane {
   flex: 1; /* Left and right get equal width */
-  padding: 20px;
 }
 
 .resizable-pane {

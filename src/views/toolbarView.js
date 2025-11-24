@@ -5,18 +5,31 @@ class ToolbarView {
     this.buttons = {};
     this.init();
   }
+  
 
   init() {
     this.container.innerHTML = `
-      <div class="toolbar">
-        <button data-action="bold" title="Bold (Ctrl+B)"><b>B</b></button>
-        <button data-action="italic" title="Italic (Ctrl+I)"><i>I</i></button>
-        <button data-action="heading" title="Heading">H1</button>
-        <button data-action="link" title="Link (Ctrl+K)">🔗</button>
-        <button data-action="image" title="Image">🖼️</button>
-        <button data-action="code" title="Code Block">{ }</button>
-        <button data-action="list" title="List">• List</button>
-        <button data-action="quote" title="Quote">" "</button>
+      <div id="toolbarArea">
+        <div style="padding-left:10px;">
+          <a data-action="bold" title="Bold [Ctrl+B]" class="fa fa-bold editor-toolbar"></a>
+          <a data-action="italic" title="Italic [Ctrl+I]" class="fa fa-italic editor-toolbar"></a>
+          <a data-action="heading" title="Header [Ctrl+H]" class="fa fa-header editor-toolbar"></a>
+          <a data-action="strikethrough" title="StrikeThrough [Ctrl+/]" class="fa fa-strikethrough editor-toolbar"></a>
+          <i class="separator">|</i>
+          <a data-action="quote" title="Quote" class="fa fa-quote-left editor-toolbar"></a>
+          <a data-action="unorderedList" title="Unordered List" class="fa fa-list-ul editor-toolbar"></a>
+          <a data-action="orderedList" title="Ordered List" class="fa fa-list-ol editor-toolbar"></a>
+          <i class="separator">|</i>
+          <a data-action="latex" title="Math" class="fa fa-superscript editor-toolbar"></a>
+          <i class="separator">|</i>
+          <a data-action="link" title="Create Link [Ctrl+L]" class="fa fa-link editor-toolbar"></a>
+          <a data-action="image" title="Insert Image [Ctrl+Alt+I]" class="fa fa-picture-o editor-toolbar"></a>
+          <a data-action="table" title="Insert Table [Ctrl+Shift+T]" class="fa fa-table editor-toolbar"></a>
+          <a data-action="horizontalRule" title="Insert Horizontal Rule" class="fa fa-minus editor-toolbar"></a>
+          <i class="separator">|</i>
+          <a data-action="sidePanel" title="Side-By-Side Panel Toggle" class="fa fa-columns editor-toolbar"></a>
+          <a data-action="help" title="Markdown Help" class="fa fa-question-circle editor-toolbar"></a>
+        </div>
       </div>
     `;
 
@@ -25,18 +38,28 @@ class ToolbarView {
       bold: this.container.querySelector('[data-action="bold"]'),
       italic: this.container.querySelector('[data-action="italic"]'),
       heading: this.container.querySelector('[data-action="heading"]'),
+      strikethrough: this.container.querySelector('[data-action="strikethrough"]'),
+      quote: this.container.querySelector('[data-action="quote"]'),
+      unorderedList: this.container.querySelector('[data-action="unorderedList"]'),
+      orderedList: this.container.querySelector('[data-action="orderedList"]'),
+      latex: this.container.querySelector('[data-action="latex"]'),
       link: this.container.querySelector('[data-action="link"]'),
       image: this.container.querySelector('[data-action="image"]'),
-      code: this.container.querySelector('[data-action="code"]'),
-      list: this.container.querySelector('[data-action="list"]'),
-      quote: this.container.querySelector('[data-action="quote"]')
+      table: this.container.querySelector('[data-action="table"]'),
+      horizontalRule: this.container.querySelector('[data-action="horizontalRule"]'),
+      sidePanel: this.container.querySelector('[data-action="sidePanel"]'),
+      help: this.container.querySelector('[data-action="help"]')
     };
   }
+  
 
   on(action, handler) {
     const button = this.buttons[action];
     if (button) {
-      button.addEventListener('click', handler);
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        handler(e);
+      });
     }
   }
 
@@ -50,16 +73,21 @@ class ToolbarView {
   disable(action) {
     const button = this.buttons[action];
     if (button) {
-      button.disabled = true;
+      button.style.pointerEvents = 'none';
+      button.style.opacity = '0.5';
     }
   }
 
   enable(action) {
     const button = this.buttons[action];
     if (button) {
-      button.disabled = false;
+      button.style.pointerEvents = 'auto';
+      button.style.opacity = '1';
     }
   }
+  
 }
+
+
 
 module.exports = ToolbarView;

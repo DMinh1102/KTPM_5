@@ -1,7 +1,7 @@
 // src/main/main.js
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
-
+const config = require('./config');
 
 let mainWindow;
 
@@ -29,8 +29,23 @@ function createWindow() {
   });
 }
 
+function initConfig() {
+  // Initialize default configuration if not set
+  const isSyncScroll = config.get('isSyncScroll');
+  if (isSyncScroll === true) {
+    $syncScroll.attr('checked', true);
+  } else {
+    $syncScroll.attr('checked', false);
+  }
+  const isDarkMode = config.get('darkMode');
+  changeTheme(isDarkMode);
+  const isHtml = config.get('isHtml');
+  clkPref(isHtml);
+}
+
 app.whenReady().then(() => {
   createWindow();
+  initConfig();
   require('./menu');
   require('./ipc-handlers');
 
@@ -46,4 +61,5 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
 
