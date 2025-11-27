@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "codemirror": "^5.65.20",
+    "electron-localshortcut": "^3.2.1",
     "electron-store": "^8.2.0",
     "highlight.js": "^11.11.1",
     "marked": "^9.1.6"

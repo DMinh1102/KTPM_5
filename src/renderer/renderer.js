@@ -10,7 +10,11 @@ const CodeMirror = require('codemirror');
 const divider = document.getElementById("divider");
 const editor = document.getElementById("editor-container");
 const preview = document.getElementById("preview-container");
+const OptionsView = require('../views/optionViews.js');
 require('codemirror/mode/markdown/markdown');
+
+
+
 
 // Initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const toolbarView = new ToolbarView(
     document.getElementById('toolbar-container')
   );
+  const optionsView = new OptionsView(
+    document.getElementById('options-container')
+  );
+
+    
 
   // Create controllers
   const documentController = new DocumentController(
@@ -43,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     editorView,
     toolbarView
   );
+  
 
   // Apply settings
   editorView.setTheme(settingsModel.getSetting('theme'));
@@ -82,3 +92,4 @@ document.addEventListener("mouseup", () => {
   dragging = false;
   document.body.style.cursor = "default";
 });
+

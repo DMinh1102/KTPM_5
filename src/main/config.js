@@ -1,10 +1,12 @@
 'use strict';
-const Config = require('electron-config');
+const Store = require('electron-store');
 
-module.exports = new Config({
+const config = new Store({
   defaults: {
     darkMode: false,
     isSyncScroll: false,
     isHtml: false
   }
 });
+
+module.exports = config;
