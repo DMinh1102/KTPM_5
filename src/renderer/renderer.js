@@ -11,6 +11,8 @@ const divider = document.getElementById("divider");
 const editor = document.getElementById("editor-container");
 const preview = document.getElementById("preview-container");
 const OptionsView = require('../views/optionViews.js');
+const marked = require('marked');
+
 require('codemirror/mode/markdown/markdown');
 
 
@@ -37,9 +39,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const optionsView = new OptionsView(
     document.getElementById('options-container')
   );
+  // Wire editor scroll to preview scroll
+  editorView.on('scroll', (percentage) => {
+    if (optionsView.isSyncScrollEnabled()) {
+      previewView.scrollToPercentage(percentage);
+    }
+  });
 
-    
+  // Listen for checkbox changes
+  optionsView.on('syncScrollChange', (enabled) => {
+    if (enabled) {
+      previewView.enableScrollSync();
+    } else {
+      previewView.disableScrollSync();
+    }
+  });
+  
+  optionsView.on('preferenceChange', (preference) => {
+    documentController.currentPreference = preference;
+    if (preference === 'html') {
+      previewView.renderRawHtml(documentModel.getContent());
+    } else {
+      previewView.render(documentModel.getContent());
+    }
+  });
 
+  
+
+  
   // Create controllers
   const documentController = new DocumentController(
     documentModel,
@@ -92,4 +119,7 @@ document.addEventListener("mouseup", () => {
   dragging = false;
   document.body.style.cursor = "default";
 });
+
+
+
 

@@ -1,4 +1,7 @@
 // src/views/ToolbarView.js
+
+const ThemeModel = require('../models/themesModels');
+
 class ToolbarView {
   constructor(container) {
     this.container = container;

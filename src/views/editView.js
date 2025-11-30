@@ -2,6 +2,7 @@
 const CodeMirror = require('codemirror');
 require('codemirror/mode/markdown/markdown');
 require('codemirror/addon/edit/continuelist');
+const ThemeModel = require('../models/themesModels');
 
 class EditorView {
   constructor(container) {
@@ -9,6 +10,8 @@ class EditorView {
     this.editor = null;
     this.eventHandlers = {};
     this.init();
+    ThemeModel.subscribe(this.applyTheme.bind(this));
+    this.applyTheme(ThemeModel.getTheme()); // apply initial theme
   }
 
   init() {
@@ -35,7 +38,21 @@ class EditorView {
         const cursor = this.editor.getCursor();
         this.eventHandlers.cursorActivity(cursor);
       }
+      
     });
+
+    this.editor.on('scroll', () => {
+      if (this.eventHandlers.scroll) {
+        const info = this.editor.getScrollInfo();
+        const percentage = info.top / (info.height - info.clientHeight);
+        this.eventHandlers.scroll(percentage);
+      }
+    });
+
+  }
+  applyTheme(theme) {
+    const cmTheme = theme === 'dark' ? 'dracula' : 'default';
+    this.editor.setOption('theme', cmTheme);
   }
 
   // Public API for Controller
@@ -59,7 +76,7 @@ class EditorView {
   }
 
   setTheme(theme) {
-    this.editor.setOption('theme', theme);
+    this.applyTheme(theme);
   }
 
   setFontSize(size) {
