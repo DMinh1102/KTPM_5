@@ -1,4 +1,5 @@
 // src/views/OptionsView.js
+const ThemeModel = require('../models/themesModels');
 class OptionsView {
   constructor(container) {
     this.container = container;
@@ -62,12 +63,12 @@ class OptionsView {
         document.getElementById("angleToolBar").className = "";
         document.getElementById("angleToolBar").className = "fa fa-angle-double-right";
         document.getElementById("toolbarArea").style.display = "none";
-        document.getElementById("main-content").style.paddingTop = "24px";
+        document.getElementById("main-content").style.paddingTop = "0px";
     }else{
         document.getElementById("angleToolBar").className = "";
         document.getElementById("angleToolBar").className = "fa fa-angle-double-down";
         document.getElementById("toolbarArea").style.display = "block";
-        document.getElementById("main-content").style.paddingTop = "53px";
+        document.getElementById("main-content").style.paddingTop = "28px";
         }
     });
 
@@ -121,6 +122,8 @@ class OptionsView {
   // Change Theme
   handleThemeChange(radio) {
     const theme = radio.value; // 'light' or 'dark'
+    ThemeModel.setTheme(theme);
+
     
     // Apply theme changes to document
     if (theme === 'dark') {
@@ -136,6 +139,7 @@ class OptionsView {
       this.callbacks.onThemeChange(theme);
     }
   }
+
 
   // Change Preference (HTML/Preview)
   handlePreferenceChange(radio) {
@@ -192,6 +196,7 @@ class OptionsView {
     }
   }
 
+
   // Get current preference
   getCurrentPreference() {
     return this.elements.htmlRadio.checked ? 'html' : 'preview';
@@ -202,6 +207,7 @@ class OptionsView {
     if (preference === 'html') {
       this.elements.htmlRadio.checked = true;
       this.handlePreferenceChange(this.elements.htmlRadio);
+      document.preference
     } else {
       this.elements.previewRadio.checked = true;
       this.handlePreferenceChange(this.elements.previewRadio);
@@ -217,7 +223,9 @@ class OptionsView {
   setSyncScroll(enabled) {
     this.elements.syncScrollCheckbox.checked = enabled;
     this.handleSyncScrollChange(enabled);
+    console.log("scrolling");
   }
+  
 }
 
 module.exports = OptionsView;

@@ -7,6 +7,7 @@ class DocumentController {
     this.model = model;
     this.editorView = editorView;
     this.previewView = previewView;
+    this.currentPreference = 'preview';
     
     this.bindModelEvents();
     this.bindViewEvents();
@@ -58,12 +59,16 @@ class DocumentController {
   }
 
   onContentChanged(content) {
-    // Update preview with debouncing
     clearTimeout(this.previewTimeout);
     this.previewTimeout = setTimeout(() => {
-      this.previewView.render(content);
+      if (this.currentPreference === 'html') {
+        this.previewView.renderRawHtml(content);
+      } else {
+        this.previewView.render(content);
+      }
     }, 300);
   }
+
 
   async handleNew() {
     if (this.model.isDirty) {
@@ -98,7 +103,12 @@ class DocumentController {
       this.model.setFilePath(filePath);
       this.model.markClean();
       this.editorView.render(content);
-      this.previewView.render(content);
+
+      if (this.currentPreference === 'html') {
+        this.previewView.renderRawHtml(content);
+      } else {
+        this.previewView.render(content);
+      }
     } catch (error) {
       this.showError('Failed to open file', error.message);
     }
@@ -201,6 +211,7 @@ class DocumentController {
   showSuccess(message) {
     ipcRenderer.send('notification:success', { message });
   }
+  
 }
 
 module.exports = DocumentController;

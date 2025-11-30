@@ -245,8 +245,8 @@ input[type="radio"]:checked:before {
         height: 100%;
     }
     #previewPanel {
-        height: auto;
-        overflow: visible;
+        height: 100%;
+        overflow: auto;
     }
      ::-webkit-scrollbar {
         width: 0;
